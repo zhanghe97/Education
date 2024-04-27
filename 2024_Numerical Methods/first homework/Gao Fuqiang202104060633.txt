@@ -1,0 +1,37 @@
+#车辆2101高富强202104060633 python
+import numpy
+import matplotlib
+from matplotlib import pyplot                                  #调用函数
+
+
+x=[1,3,5]
+y=[2,10,1]
+def lagrange_intterploate(x1):                                    #定义拉格朗日函数
+    P=[]
+    L_n=0
+    for i in range(len(x)):
+        numerator=1
+        denominator=1
+        for j in range(len(x)):
+            if j!=i:
+                numerator*=(x1-x[j])
+                denominator*=(x[i]-x[j])
+        P.append(numerator/denominator)
+        
+    for i in range(len(x)):
+        L_n+=y[i]*P[i]
+        
+    return round(L_n,3)
+    
+print(lagrange_intterploate(10))                               #调用拉格朗日函数
+
+x2=numpy.linspace(-10,10,20,endpoint=False)
+print(x2)
+y2=[]
+for i in range(len(x2)):
+    y2.append(lagrange_intterploate(x2[i]))
+print(y2)
+
+pyplot.plot(x2,y2)
+pyplot.scatter(x,y,marker='.')
+pyplot.show()                                                             #画图展示
